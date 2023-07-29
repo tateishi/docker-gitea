@@ -3,14 +3,18 @@ version: '3'
 
 services:
   gitea:
-    image: gitea/gitea:1.20-rootless
+    build:
+      context: ./gitea
     restart: always
     volumes:
-      - ./data:/var/lib/gitea
-      - ./config:/etc/gitea
+      - data:/var/lib/gitea
+      - config:/etc/gitea
       - /etc/timezone:/etc/timezone:ro
       - /etc/localtime:/etc/localtime:ro
     ports:
       - "3000:3000"
       - "2222:2222"
 
+volumes:
+  data:
+  config:
